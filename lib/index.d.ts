@@ -1,12 +1,27 @@
+import { EventEmitter } from 'events';
 import SendStatus = require('./producer/send_status');
 
 declare class Message {
     constructor(topic: string, tags?: string, body?: string | Buffer);
-    get tags(): string;
-    set tags(val: string): void;
+    public tags: string;
+    public keys: string[];
+    public originMessageId: string;
+    public retryTopic: string;
+    public delayTimeLevel: number;
+    public waitStoreMsgOK: boolean;
+    public buyerId: string;
+
+    public msgId: string | null;
+    public body: string | Buffer;
+    public topic: string;
+    public queueId: string | null;
+    public properties: {
+        [key: string]: any;
+    };
+    public flag: number;
 }
 
-declare class Producer {
+declare class Producer extends EventEmitter {
     constructor(options: Producer.ProducerOptions): void;
     init(): Promise<void>;
     close(): Promise<void>;
@@ -17,7 +32,7 @@ declare class Producer {
     endTransaction(sendResult: Producer.SendResult, localTransactionState: string, localException?: any): Promise<any>;
 }
 
-declare class Consumer {
+declare class Consumer extends EventEmitter {
     constructor(options: Consumer.ComsumerOptions): void;
     init(): Promise<void>;
     close(): Promise<void>;
