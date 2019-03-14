@@ -30,6 +30,7 @@ declare class Producer extends EventEmitter {
     send(msg: Message): Promise<Producer.SendResult>;
     sendMessageInTransaction(msg: Message, tranExecuter: Function, arg?: any): Promise<Producer.SendResult>;
     endTransaction(sendResult: Producer.SendResult, localTransactionState: string, localException?: any): Promise<any>;
+    ready(): Promise<void>;
 }
 
 declare class Consumer extends EventEmitter {
