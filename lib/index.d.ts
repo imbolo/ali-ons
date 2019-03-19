@@ -22,7 +22,7 @@ declare class Message {
 }
 
 declare class Producer extends EventEmitter {
-    constructor(options: Producer.ProducerOptions): void;
+    new(options: Producer.ProducerOptions): Producer;
     init(): Promise<void>;
     close(): Promise<void>;
     updateTopicPublishInfo(topic: string, info: object): void;
@@ -34,7 +34,7 @@ declare class Producer extends EventEmitter {
 }
 
 declare class Consumer extends EventEmitter {
-    constructor(options: Consumer.ComsumerOptions): void;
+    new(options: Consumer.ComsumerOptions): Consumer;
     init(): Promise<void>;
     close(): Promise<void>;
     subscribe(topic: string, subExpression: string, handler: Function): void;
@@ -80,13 +80,6 @@ declare namespace Producer {
         queueOffset: number;
         transactionId?: number;
         localTransactionState?: string;
-    }
-
-    export enum SendStatus {
-        SEND_OK = SendStatus.SEND_OK,
-        FLUSH_DISK_TIMEOUT = SendStatus.FLUSH_DISK_TIMEOUT,
-        FLUSH_SLAVE_TIMEOUT = SendStatus.FLUSH_SLAVE_TIMEOUT,
-        SLAVE_NOT_AVAILABLE = SendStatus.SLAVE_NOT_AVAILABLE,
     }
 }
 
