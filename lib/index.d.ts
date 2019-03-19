@@ -47,6 +47,7 @@ interface BaseOptions {
     accessKey: string;
     secretKey: string;
     topic: string;
+    nameSrv?: string;
     onsAddr?: string;
     instanceName?: string;
     pollNameServerInteval?: number;
