@@ -22,7 +22,7 @@ declare class Message {
 }
 
 declare class Producer extends EventEmitter {
-    new(options: Producer.ProducerOptions): Producer;
+    constructor(options: Producer.ProducerOptions);
     init(): Promise<void>;
     close(): Promise<void>;
     updateTopicPublishInfo(topic: string, info: object): void;
@@ -34,7 +34,7 @@ declare class Producer extends EventEmitter {
 }
 
 declare class Consumer extends EventEmitter {
-    new(options: Consumer.ComsumerOptions): Consumer;
+    constructor(options: Consumer.ComsumerOptions);
     init(): Promise<void>;
     close(): Promise<void>;
     subscribe(topic: string, subExpression: string, handler: Function): void;
