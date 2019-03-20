@@ -110,7 +110,7 @@ declare namespace Consumer {
         postSubscriptionWhenPull?: boolean; // 是否每次拉消息时，都上传订阅关系
         allocateMessageQueueStrategy?: any; // 队列分配算法，应用可重写
         maxReconsumeTimes?: number; // 最大重试次数
-    };
+    }
 }
 
 export { Message, Producer, Consumer };
